@@ -298,6 +298,16 @@ function style(m){return m.c?' style="--c:'+m.c+';--t:'+m.t+';--cd:'+m.cd+'"':''
 var OPEN=MODS.map(function(){return true});
 try{var sv=JSON.parse(sessionStorage.getItem("mods")||"null");if(sv&&sv.length===OPEN.length)OPEN=sv}catch(e){}
 function saveOpen(){try{sessionStorage.setItem("mods",JSON.stringify(OPEN))}catch(e){}}
+var SIGNUP_AFTER=6;
+function signupDone(){var d=false;try{d=localStorage.getItem("advent26-signupbar")==="1"}catch(e){}return d}
+function countView(id){
+  var seen=[];try{seen=JSON.parse(localStorage.getItem("advent26-views")||"[]")}catch(e){}
+  if(seen.indexOf(id)<0){seen.push(id);try{localStorage.setItem("advent26-views",JSON.stringify(seen))}catch(e){}}
+  return seen.length;
+}
+function signupRemindHTML(){
+  return '<section class="signupbar remind" aria-label="Sign up for updates"><p><strong>Is this helpful?</strong> Sign up and we will let you know when more resources are ready.</p><a class="btn" href="#signup" id="signupgo">Sign up for updates</a><button type="button" class="nb" id="signupclose">No thanks</button></section>';
+}
 function signupBarHTML(){
   var gone=false;try{gone=localStorage.getItem("advent26-signupbar")==="1"}catch(e){}
   if(gone||typeof SIGNUP_URL==="undefined"||!SIGNUP_URL)return "";
@@ -366,7 +376,7 @@ var PRIVACY='<p>Last updated October 27, 2026.</p>'+
 '<p>GoatCounter stores this data on servers in Finland and Germany. The service is run by Martin Tournoij in Ireland. Read <a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener">GoatCounter&rsquo;s privacy policy</a>.</p>'+
 '<h3>The optional sign-up form</h3><p>The page called Sign Up for Updates has a Google Form. It is optional, and every page works without it. If you fill it in, you tell us your name, email, church, and role. Your answers go to Google Forms and are kept in one private spreadsheet that only the New England District Discipleship Resource Team can see. We use them to email you about this resource and future Advent and Lent resources. We do not sell or share them. To be removed, write to julenet@everydaypeacemaking.org.</p>'+
 '<p>Separately, one page of Dr. Julene Tegerstrand&rsquo;s Advent practices links to a sign-up for her Sacred Seasons app, which is run by Everyday Peacemaking, LLC.</p>'+
-'<h3>What stays on your device</h3><p>Your text size, the page you last read, which sections are open, and whether you closed the sign-up banner are saved in your own browser so the site feels the same when you return. We never receive that information. You can clear it in your browser settings.</p>'+
+'<h3>What stays on your device</h3><p>Your text size, the page you last read, which sections are open, which pages you have opened (only to know when to offer the sign-up once), and whether you closed the sign-up banner are saved in your own browser so the site feels the same when you return. We never receive that information. You can clear it in your browser settings.</p>'+
 '<h3>Other companies</h3><ul>'+
 '<li><strong>GitHub</strong> hosts this site, and like any web host it keeps ordinary server records, which can include your internet address.</li>'+
 '<li><strong>Google Fonts</strong> supplies the type for the pages, so your browser contacts Google when a page loads.</li>'+
@@ -482,7 +492,8 @@ function route(){
   if(id==="credits"){app.innerHTML=creditsPage();setTitle("Credits and permissions")}
   else if(id==="privacy"){app.innerHTML=privacyPage();setTitle("Privacy")}
   else if(role){app.innerHTML=rolePage(role);setTitle("For "+role.label.toLowerCase())}
-  else if(i>=0){app.innerHTML=page(i);setTitle(plain(FLAT[i].title));rememberPage(FLAT[i].id)}
+  else if(i>=0){app.innerHTML=page(i);setTitle(plain(FLAT[i].title));rememberPage(FLAT[i].id);
+    if(FLAT[i].id!=="signup"&&countView(FLAT[i].id)>=SIGNUP_AFTER&&!signupDone()&&typeof SIGNUP_URL!=="undefined"&&SIGNUP_URL)app.insertAdjacentHTML("beforeend",signupRemindHTML())}
   else{app.innerHTML=home();setTitle("")}
   document.body.classList.toggle("sub",!!(role||i>=0||id==="credits"||id==="privacy"));
   enhance(app);
@@ -499,6 +510,7 @@ function route(){
     if(b.id==="fsp"){cur=Math.min(3,cur+1);size(cur)}
     else if(b.id==="fsm"){cur=Math.max(0,cur-1);size(cur)}
     else if(b.id==="prt"){window.print()}
+    else if(b.id==="signupgo"){try{localStorage.setItem("advent26-signupbar","1")}catch(x){}}
     else if(b.id==="signupclose"){try{localStorage.setItem("advent26-signupbar","1")}catch(x){}var bar=b.closest(".signupbar");if(bar)bar.remove();var h1=document.getElementById("app");if(h1)h1.focus()}
     else if(b.id==="skip"){e.preventDefault();var m=document.getElementById("app");m.focus();m.scrollIntoView()}
     else if(b.id==="copylink"){
