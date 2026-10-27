@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="14 20 276 259" role="img"><title>A candle burning in a rainy window, for Advent and Lament</title>
+<rect x="60" y="30" width="180" height="172" rx="6" fill="#1E7470" opacity=".5" transform="translate(7 -4)"/>
+<path d="M44 204 L256 204 L248 218 L52 218 Z" fill="#C99A6B" opacity=".9" transform="translate(6 -3)"/>
+<rect x="130" y="160" width="40" height="44" fill="#F3C4B8" opacity=".95" transform="translate(5 -3)"/>
+<path d="M150 154 C134 136 140 118 150 100 C160 118 166 136 150 154 Z" fill="#F0A33A" transform="translate(4 -2)"/>
+<path d="M150 142 C144 134 146 126 150 118 C154 126 156 134 150 142 Z" fill="#D9402B" transform="translate(4 -2)"/>
+<rect x="60" y="30" width="180" height="172" rx="6" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M150 30 L150 96 M60 115 L130 115 M170 115 L240 115" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M44 204 L256 204 L248 218 L52 218 Z" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M130 204 L130 160 L170 160 L170 204" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M150 160 L150 154" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M150 154 C134 136 140 118 150 100 C160 118 166 136 150 154 Z" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M82 52 L76 68 M104 44 L98 60 M126 56 L120 72 M184 48 L178 64 M208 58 L202 74 M222 42 L216 58 M90 132 L84 148 M112 150 L106 166 M196 134 L190 150 M220 152 L214 168" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M78 240 C78 240 70 254 78 258 C86 254 78 240 78 240 Z" fill="#1E7470" opacity=".7" transform="translate(3 -2)"/>
+<path d="M78 240 C78 240 70 254 78 258 C86 254 78 240 78 240 Z" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path transform="translate(0 -14)" d="M226 252 C226 252 218 266 226 270 C234 266 226 252 226 252 Z" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path transform="translate(0 -22)" d="M112 270 C112 270 106 280 112 284 C118 280 112 270 112 270 Z" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

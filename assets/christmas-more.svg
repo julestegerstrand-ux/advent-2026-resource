@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2 320 300" role="img"><title>A wrapped gift beside a sprig of Indian paintbrush</title>
+<circle cx="150" cy="130" r="86" fill="#F3C4B8" opacity=".5"/>
+<rect x="64" y="118" width="170" height="112" fill="#D9402B" opacity=".9" transform="translate(7 -4)"/>
+<rect x="136" y="118" width="26" height="112" fill="#F2C14E" opacity=".95" transform="translate(7 -4)"/>
+<path d="M64 118 L234 118 L234 230 L64 230 Z" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M54 100 L244 100 L244 118 L54 118 Z" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M149 100 L149 230" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M149 100 C120 64 82 70 98 92 C108 104 140 100 149 100" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M149 100 C178 64 216 70 200 92 C190 104 158 100 149 100" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M149 100 L141 118 M149 100 L157 118" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M270 240 C266 200 276 160 270 120" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M270 180 C258 176 248 164 246 150 C258 152 268 162 270 180" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M270 150 C282 144 292 132 294 118 C282 120 272 130 270 150" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M270 120 C258 112 252 98 256 84 C264 92 270 102 272 112 C276 98 284 90 294 86 C294 100 288 112 276 120" fill="#D9402B" opacity=".9" transform="translate(4 -2)"/>
+<path d="M270 120 C258 112 252 98 256 84 C264 92 270 102 272 112 C276 98 284 90 294 86 C294 100 288 112 276 120" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M30 238 L300 238" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

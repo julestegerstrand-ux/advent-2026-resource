@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -20 320 310" role="img"><title>A baby asleep in a manger</title>
+<circle cx="160" cy="125" r="104" fill="#F2C14E" opacity=".3"/>
+<path d="M56 176 L264 176 L240 246 L80 246 Z" fill="#E3C79A" opacity=".95" transform="translate(6 -4)"/>
+<path d="M92 176 C92 136 196 134 204 176 Z" fill="#1E7470" opacity=".6" transform="translate(4 -3)"/>
+<circle cx="222" cy="148" r="26" fill="#B67C4E" opacity=".95" transform="translate(4 -3)"/>
+<path d="M60 176 L50 160 M88 176 L82 156 M236 176 L244 156 M262 176 L274 162 M110 176 L106 162" stroke="#F0A33A" stroke-width="5" stroke-linecap="round" fill="none" transform="translate(3 -2)"/>
+<path d="M92 176 C92 136 196 134 204 176" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M124 148 C126 160 126 168 124 176 M156 142 C158 156 158 168 156 176" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<circle cx="222" cy="148" r="26" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M211 148 C214 152 218 152 221 148 M227 148 C230 152 234 152 237 148" stroke="#2E1F2B" stroke-width="3" stroke-linecap="round" fill="none"/>
+<path d="M219 160 C222 163 226 163 229 160" stroke="#2E1F2B" stroke-width="3" stroke-linecap="round" fill="none"/>
+<path d="M56 176 L264 176 L240 246 L80 246 Z" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M60 176 L50 160 M88 176 L82 156 M236 176 L244 156 M262 176 L274 162 M110 176 L106 162" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M96 246 L70 286 M224 246 L250 286 M110 246 L210 286 M210 246 L110 286" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M160 18 l7 16 l16 7 l-16 7 l-7 16 l-7 -16 l-16 -7 l16 -7 Z" fill="#F2C14E" opacity=".95" transform="translate(4 -3)"/>
+<path d="M160 18 l7 16 l16 7 l-16 7 l-7 16 l-7 -16 l-16 -7 l16 -7 Z" stroke="#2E1F2B" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
