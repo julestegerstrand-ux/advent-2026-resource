@@ -182,6 +182,24 @@ body.sub main{padding-top:16px}
 .tools{justify-content:center}
 .module{margin-bottom:14px}
 </style>
+<style>
+/* Spiritual practices and Sacred Seasons pages */
+.phero{display:flex;gap:20px;align-items:center;background:var(--head);border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin:4px 0 22px}
+.phero img{width:150px;max-width:34%;height:auto;background:#FBF4EA;border-radius:12px;flex:none}
+.phero p{margin:0}
+.phero .pk{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.phero .pn{font:500 34px/1.1 "Fraunces",Georgia,serif;margin:2px 0 6px}
+.phero .ps{color:var(--muted)}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+@media (max-width:620px){.pgrid{grid-template-columns:1fr}.phero{flex-direction:column;text-align:center}.phero img{max-width:60%}}
+.pcard{background:var(--head);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:12px;padding:4px 18px 14px}
+.pcard h3{margin:12px 0 6px;font:500 24px/1.2 "Fraunces",Georgia,serif}
+.pcard p{margin:0;line-height:1.8}
+.appcard{display:flex;gap:20px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin:24px 0;background:var(--card)}
+.appcard img{width:190px;max-width:36%;height:auto;background:#FBF4EA;border-radius:12px;padding:10px;flex:none}
+.appcard p{margin:0 0 10px}
+@media (max-width:620px){.appcard{flex-direction:column;text-align:center}.appcard img{max-width:60%}}
+</style>
 </head>
 <body>
 <div role="banner">
@@ -516,6 +534,30 @@ function enhance(root){
     if(ext&&!a.querySelector(".sr")&&!a.getAttribute("aria-label")){var r=document.createElement("span");r.className="sr";r.textContent=" (opens in a new tab)";a.appendChild(r)}
   });
 }
+function decoratePractice(app,id,it){
+  var art=app.querySelector("article.page");if(!art)return;
+  var m=/^w(\d)-practices$/.exec(id);
+  if(m&&it&&it.mod){
+    var wk=it.mod;
+    art.className+=" wk";art.setAttribute("style",style(wk).replace(/^ style="/,"").replace(/"$/,""));
+    var h2=art.querySelector("h2");
+    var hero=document.createElement("div");hero.className="phero";
+    hero.innerHTML='<img src="assets/wreath-week-'+m[1]+'.svg" alt=""><div><p class="pk">Week '+m[1]+' &middot; '+wk.date+'</p><p class="pn">'+wk.name+'</p><p class="ps">Lectio Divina and short practices to pray alone or with a group</p></div>';
+    h2.insertAdjacentElement("afterend",hero);
+    art.querySelectorAll("p > a[href$='.pdf']").forEach(function(a){var p=a.parentNode;if(p.children.length===1&&p.textContent.trim()===a.textContent.trim())a.classList.add("btn")});
+    var first=null,cards=[];
+    art.querySelectorAll("h3").forEach(function(h){
+      var nx=h.nextElementSibling,d=document.createElement("div");d.className="pcard";
+      h.parentNode.insertBefore(d,h);d.appendChild(h);if(nx&&nx.tagName==="P")d.appendChild(nx);cards.push(d)});
+    if(cards.length){var g=document.createElement("div");g.className="pgrid";cards[0].parentNode.insertBefore(g,cards[0]);cards.forEach(function(c){g.appendChild(c)})}
+    art.querySelectorAll("p").forEach(function(p){if(/part of Sacred Seasons/.test(p.textContent)){var c=document.createElement("div");c.className="appcard";c.innerHTML='<img src="assets/sacred-seasons-logo.png" alt="Sacred Seasons logo">';var d=document.createElement("div");p.parentNode.replaceChild(c,p);d.appendChild(p);c.appendChild(d)}});
+  }
+  if(id==="app"){
+    var p=art.querySelector("p"),b=art.querySelector("a.btn");if(!p)return;
+    var c=document.createElement("div");c.className="appcard";c.innerHTML='<img src="assets/sacred-seasons-logo.png" alt="Sacred Seasons logo">';
+    var d=document.createElement("div");p.parentNode.replaceChild(c,p);d.appendChild(p);if(b)d.appendChild(b);c.appendChild(d);
+  }
+}
 function route(){
   var id=location.hash.slice(1),app=document.getElementById("app"),i=-1,role=null;
   FLAT.forEach(function(it,k){if(it.id===id)i=k});
@@ -528,6 +570,7 @@ function route(){
     if(FLAT[i].id!=="signup"&&countView(FLAT[i].id)>=SIGNUP_AFTER&&!signupDone()&&typeof SIGNUP_URL!=="undefined"&&SIGNUP_URL)app.insertAdjacentHTML("beforeend",signupRemindHTML())}
   else{app.innerHTML=home();setTitle("")}
   document.body.classList.toggle("sub",!!(role||i>=0||id==="credits"||id==="privacy"));
+  if(i>=0)decoratePractice(app,FLAT[i].id,FLAT[i]);
   enhance(app);
   window.scrollTo(0,0);
   var t=document.getElementById("ptitle");if(t)t.focus();
