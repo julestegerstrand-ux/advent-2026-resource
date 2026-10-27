@@ -213,6 +213,11 @@ body.sub main{padding-top:16px}
 .row .ssmark{flex:none;width:32px;height:32px;margin:-4px 12px -4px -7px}
 .rl .ssmark{width:22px;height:22px;vertical-align:-5px;margin-right:8px}
 </style>
+<style>
+.gcard{border:2px solid var(--c);border-radius:16px;padding:6px 20px 16px;margin:18px 0;background:var(--card)}
+.gcard h3{margin:12px 0 8px;font:500 24px/1.2 "Fraunces",Georgia,serif}
+.gcard p{margin:0 0 12px}
+</style>
 </head>
 <body>
 <div role="banner">
@@ -565,6 +570,10 @@ function decoratePractice(app,id,it){
       var nx=h.nextElementSibling,d=document.createElement("div");d.className="pcard";
       h.parentNode.insertBefore(d,h);d.appendChild(h);if(nx&&nx.tagName==="P")d.appendChild(nx);cards.push(d)});
     if(cards.length){var g=document.createElement("div");g.className="pgrid";cards[0].parentNode.insertBefore(g,cards[0]);cards.forEach(function(c){g.appendChild(c)})}
+    var gp=art.querySelector(".pgrid");
+    if(gp){var gc=document.createElement("div");gc.className="gcard";
+      gc.innerHTML='<h3>Pray this week with your group</h3><p>The prayers for Week '+m[1]+' are in the Sacred Seasons web app. Everyone can pray on their own during the week, then your group can meet to share what came up. Leader guides for the weekly meeting are in the free Church Kit.</p><a class="btn" href="https://sacredseasons.julenetegerstrand.com/pray/" target="_blank" rel="noopener">Pray Week '+m[1]+' in Sacred Seasons</a><a class="btn alt" href="https://sacredseasons.julenetegerstrand.com/advent-resources-for-churches/" target="_blank" rel="noopener">Get the free Church Kit</a>';
+      gp.insertAdjacentElement("afterend",gc)}
     art.querySelectorAll("p").forEach(function(p){if(/part of the Sacred Seasons web app/.test(p.textContent)){var c=document.createElement("div");c.className="appcard";c.innerHTML='<img src="assets/sacred-seasons-logo.png" alt="Sacred Seasons logo">';var d=document.createElement("div");p.parentNode.replaceChild(c,p);d.appendChild(p);c.appendChild(d)}});
   }
   if(id==="app"){
