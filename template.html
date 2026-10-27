@@ -163,6 +163,25 @@ body.sub .banner p{display:none}
 body.sub .banner h1{font-size:22px;margin:0}
 body.sub main{padding-top:16px}
 </style>
+<style>
+/* Home page: balanced tiles (4 across, or 2 on small screens), grouped headings, pill buttons */
+.hh{font:500 clamp(24px,3.2vw,30px)/1.2 "Fraunces",Georgia,serif;margin:34px 0 14px;text-align:center}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);grid-gap:16px;margin:0 0 10px}
+@media (max-width:760px){.tiles{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:330px){.tiles{grid-template-columns:1fr}}
+.tile{justify-content:flex-start;padding:16px 12px;border-radius:20px;box-shadow:0 10px 26px rgba(46,31,43,.18)}
+.tile img{width:100%;max-width:170px;aspect-ratio:5/4;object-fit:contain;margin-bottom:12px}
+.tile .tn{font:500 22px/1.2 "Fraunces",Georgia,serif;min-height:2.4em;display:flex;align-items:center;justify-content:center}
+@media (max-width:760px){.tile .tn{font-size:20px}}
+.tile .td{font-size:15px;margin-top:4px;opacity:.95}
+.roles{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.role{flex:0 1 auto;max-width:100%;border-radius:999px;padding:10px 22px;text-align:center}
+.role span{display:none}
+.role b{font-size:18px}
+.start{text-align:center}.startrow{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:8px}
+.tools{justify-content:center}
+.module{margin-bottom:14px}
+</style>
 </head>
 <body>
 <div role="banner">
@@ -296,7 +315,7 @@ var FLAT=[];
 MODS.forEach(function(m){m.items.forEach(function(it){if(it.id){it.mod=m;if(!it.href)FLAT.push(it)}})});
 function esc(s){return s}
 function style(m){return m.c?' style="--c:'+m.c+';--t:'+m.t+';--cd:'+m.cd+'"':''}
-var OPEN=MODS.map(function(){return true});
+var OPEN=MODS.map(function(){return false});
 try{var sv=JSON.parse(sessionStorage.getItem("mods")||"null");if(sv&&sv.length===OPEN.length)OPEN=sv}catch(e){}
 function saveOpen(){try{sessionStorage.setItem("mods",JSON.stringify(OPEN))}catch(e){}}
 var SIGNUP_AFTER=6;
@@ -314,11 +333,23 @@ function signupBarHTML(){
   if(gone||typeof SIGNUP_URL==="undefined"||!SIGNUP_URL)return "";
   return '<section class="signupbar" aria-label="Sign up for updates"><p><strong>More resources are coming.</strong> Sign up and we will let you know when they are ready.</p><a class="btn" href="#signup">Sign up for updates</a><button type="button" class="nb" id="signupclose">No thanks</button></section>';
 }
+var TILELAB={"Christmas Eve":["Christmas Eve","December 24"],"Lament":["Lament","Blue Christmas"],"Christmas Sunday":["Christmas Sunday","December 27"],"Christmas":["Christmas for Kids","Additional resources"]};
+function tileHTML(m,k){
+  var img,name,sub;
+  if(m.wk){img='assets/wreath-week-'+m.n+'.svg';name=m.name;sub='Week '+m.n+' &middot; '+m.date}
+  else{img=m.img;var l=TILELAB[m.tn]||[m.tn,m.td];name=l[0];sub=l[1]}
+  return '<button type="button" class="tile wk"'+style(m)+' data-goto="'+k+'"><img src="'+img+'" alt=""><span class="tn">'+name+'</span><span class="td">'+sub+'</span></button>';
+}
 function home(){
-  var h=signupBarHTML()+resumeHTML()+rolesHTML()+searchHTML();
-  h+='<div class="tiles">';
-  MODS.forEach(function(m,k){if(m.wk)h+='<button type="button" class="tile wk"'+style(m)+' data-goto="'+k+'"><img src="assets/wreath-week-'+m.n+'.svg" alt=""><span class="tw">Week '+m.n+'</span><span class="tn">'+m.name+'</span><span class="td">'+m.date+'</span></button>';else if(m.feat)h+='<button type="button" class="tile wk"'+style(m)+' data-goto="'+k+'"><img src="'+m.img+'" alt=""><span class="tw">'+m.tw+'</span><span class="tn">'+m.tn+'</span><span class="td">'+m.td+'</span></button>'});
-  h+='</div>'+'<div class="tools"><button type="button" class="nb" data-all="1">Expand all</button><button type="button" class="nb" data-all="0">Collapse all</button></div>';
+  var h=signupBarHTML()+resumeHTML();
+  h+='<h2 class="hh">The four weeks of Advent</h2><div class="tiles">';
+  MODS.forEach(function(m,k){if(m.wk)h+=tileHTML(m,k)});
+  h+='</div><h2 class="hh">Christmas and more</h2><div class="tiles">';
+  MODS.forEach(function(m,k){if(m.feat)h+=tileHTML(m,k)});
+  h+='</div>';
+  h+='<section class="start"><h2 class="hh">Start here</h2><div class="startrow"><a class="nb go" href="#how">How to use this resource</a><a class="nb" href="#intro">Introduction to Advent</a><a class="nb" href="#authors">Meet the authors</a></div></section>';
+  h+=rolesHTML()+searchHTML();
+  h+='<div class="tools"><button type="button" class="nb" data-all="1">Expand all</button><button type="button" class="nb" data-all="0">Collapse all</button></div>';
   MODS.forEach(function(m,k){
     var o=OPEN[k];
     h+='<div class="module'+(m.wk||m.feat?' wk':'')+'" id="mod'+k+'"'+style(m)+'><h2 class="mh"><button type="button" class="mhead" data-mod="'+k+'" aria-expanded="'+o+'" aria-controls="rows'+k+'"><span class="tri" aria-hidden="true"></span><span class="mt">'+(m.wk?'<span class="eb">Week '+m.n+' &middot; '+m.date+'</span>':(m.eb?'<span class="eb">'+m.eb+'</span>':''))+'<span class="ttl">'+m.title+'</span></span>'+(m.wk?'<img class="mw" src="assets/wreath-week-'+m.n+'.svg" alt="">':(m.img?'<img class="mw" src="'+m.img+'" alt="">':''))+'</button></h2><div class="rows" id="rows'+k+'"'+(o?'':' hidden')+'>';
