@@ -209,6 +209,10 @@ body.sub main{padding-top:16px}
 .appcard p{margin:0 0 10px}
 @media (max-width:620px){.appcard{flex-direction:column;text-align:center}.appcard img{max-width:60%}}
 </style>
+<style>
+.row .ssmark{flex:none;width:32px;height:32px;margin:-4px 12px -4px -7px}
+.rl .ssmark{width:22px;height:22px;vertical-align:-5px;margin-right:8px}
+</style>
 </head>
 <body>
 <div role="banner">
@@ -383,7 +387,7 @@ function home(){
     m.items.forEach(function(it){
       if(it.group) h+='<div class="grp">'+it.group+'</div>';
       else if(it.href) h+='<a class="row link" href="'+it.href+'" target="_blank" rel="noopener"><span class="ico round"></span>'+it.title+' <span aria-hidden="true">&#8599;</span><span class="sr"> (opens another site)</span></a>';
-      else h+='<a class="row'+(it.sub?' sub':'')+'" href="#'+it.id+'"><span class="ico"></span>'+it.title+'</a>';
+      else h+='<a class="row'+(it.sub?' sub':'')+'" href="#'+it.id+'">'+(isSS(it)?SSMARK:'<span class="ico"></span>')+it.title+'</a>';
     });
     h+='</div></div>';
   });
@@ -457,6 +461,8 @@ function rolesHTML(){
   ROLES.forEach(function(r){h+='<a class="role" href="#'+r.id+'"><b>'+r.label+'</b><span>'+r.note+'</span></a>'});
   return h+'</div></section>';
 }
+function isSS(it){return it.id==="app"||/^w\d-practices$/.test(it.id||"")}
+var SSMARK='<img class="ssmark" src="assets/sacred-seasons-mark.svg" alt="" width="26" height="26">';
 function rolePage(r){
   var h='<div class="backbar"><a class="nb backhome" href="#">&larr; All resources</a></div><article class="page"><h2 id="ptitle" tabindex="-1">For: '+r.label+'</h2><p>'+r.note+'. Here are the pages made for you.</p>',n=0;
   MODS.forEach(function(m){
@@ -464,7 +470,7 @@ function rolePage(r){
     if(!items.length)return;
     n++;h+='<h3>'+m.title+'</h3><ul class="rl">';
     items.forEach(function(it){
-      h+='<li><a href="'+(it.href?it.href:'#'+it.id)+'"'+(it.href?' target="_blank" rel="noopener"':'')+'>'+it.title+'</a></li>';
+      h+='<li><a href="'+(it.href?it.href:'#'+it.id)+'"'+(it.href?' target="_blank" rel="noopener"':'')+'>'+(isSS(it)?SSMARK:'')+it.title+'</a></li>';
     });
     h+='</ul>';
   });
