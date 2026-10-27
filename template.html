@@ -283,8 +283,9 @@ if(SIGNUP_URL){
   MODS[0].items.splice(1,0,{id:"signup",title:"Sign Up for Updates and Credit (optional)",html:
    '<p>Sign up if you would like to hear from us about these resources and future resources for Advent and Lent, or if you want Life Long Learning Credit for your time. It is optional. You can use every page without signing up.</p>'+
    '<p class="note">We ask for your name, email, church, and role so we can know who is using this resource and send you credit information. We may email you about this resource and future Advent and Lent resources. Your answers are kept in one private spreadsheet, seen only by the New England District team. We do not sell or share them. To be removed, write to <a href="mailto:julenet@everydaypeacemaking.org">julenet@everydaypeacemaking.org</a>.</p>'+
+   '<p><a class="btn" href="'+SU+'" target="_blank" rel="noopener">Open the sign-up form</a></p>'+
    '<div class="video" style="padding-top:0;height:900px"><iframe src="'+SU+'?embedded=true" title="Sign up form" style="position:static;width:100%;height:100%">Loading</iframe></div>'+
-   '<p><a href="'+SU+'" target="_blank" rel="noopener">Open the form in its own window</a></p>'});
+   '<p>If the form does not appear above, use the button at the top of this page.</p>'});
 }
 var FLAT=[];
 MODS.forEach(function(m){m.items.forEach(function(it){if(it.id){it.mod=m;if(!it.href)FLAT.push(it)}})});
@@ -354,7 +355,8 @@ var PRIVACY='<p>Last updated October 27, 2026.</p>'+
 '<li>the width of the screen</li></ul>'+
 '<p>Because the lists are separate, nobody can tell which browser, country, or screen belonged to which visitor. GoatCounter does not store internet addresses, full browser details, or any visitor ID. It does not use cookies and saves nothing in your browser. To tell repeat visits apart, it keeps a temporary code in its memory for up to 8 hours and does not save that code. It does not follow you to other websites, and it shares nothing with third parties. We use the totals only to see how the resource is used.</p>'+
 '<p>GoatCounter stores this data on servers in Finland and Germany. The service is run by Martin Tournoij in Ireland. Read <a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener">GoatCounter&rsquo;s privacy policy</a>.</p>'+
-'<h3>The optional sign-up form</h3><p>The page with Dr. Julene Tegerstrand&rsquo;s Advent practices has a Google Form for people who want to hear when her Sacred Seasons app is ready. It is optional. If you fill it in, what you type goes to Google Forms and to Everyday Peacemaking, LLC, which uses it only to contact you about the app. Write to julenet@everydaypeacemaking.org to ask to be removed.</p>'+
+'<h3>The optional sign-up form</h3><p>The page called Sign Up for Updates and Credit has a Google Form. It is optional, and every page works without it. If you fill it in, you tell us your name, email, church, and role. Your answers go to Google Forms and are kept in one private spreadsheet that only the New England District team can see. We use them to send you credit information and to email you about this resource and future Advent and Lent resources. We do not sell or share them. To be removed, write to julenet@everydaypeacemaking.org.</p>'+
+'<p>Separately, one page of Dr. Julene Tegerstrand&rsquo;s Advent practices links to a sign-up for her Sacred Seasons app, which is run by Everyday Peacemaking, LLC.</p>'+
 '<h3>What stays on your device</h3><p>Your text size, the page you last read, and which sections are open are saved in your own browser so the site feels the same when you return. We never receive that information. You can clear it in your browser settings.</p>'+
 '<h3>Other companies</h3><ul>'+
 '<li><strong>GitHub</strong> hosts this site, and like any web host it keeps ordinary server records, which can include your internet address.</li>'+
