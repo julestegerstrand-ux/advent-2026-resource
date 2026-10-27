@@ -12,7 +12,7 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--surface);color:var(--ink);font:18px/1.6 "DM Sans",system-ui,sans-serif}
 a{color:var(--teal)}
-.hero{display:block;width:100%;height:auto;max-height:360px;object-fit:cover;object-position:50% 12%}
+.hero{display:block;width:100%;max-width:1800px;height:auto;margin:0 auto}
 .banner{background:var(--night);color:var(--on);padding:40px 24px;text-align:center}
 .banner h1{font:500 clamp(30px,5vw,44px)/1.15 "Fraunces",Georgia,serif;margin:0 0 8px}
 .banner p{margin:0 auto;max-width:34em;opacity:.92}
@@ -66,7 +66,7 @@ a:focus,button:focus{outline:3px solid #F2C14E;outline-offset:2px}
 .author>img{margin-right:20px}
 .nav .nb{margin:4px 0}
 .tools .nb{margin-left:10px}
-@media (max-width:760px){main{padding-left:14px;padding-right:14px}.hero{max-height:240px}.banner{padding:28px 18px}}
+@media (max-width:760px){main{padding-left:14px;padding-right:14px}.banner{padding:28px 18px}}
 @media (max-width:520px){
   body{font-size:17px}
   .nav{display:block}
@@ -81,7 +81,7 @@ a:focus,button:focus{outline:3px solid #F2C14E;outline-offset:2px}
 @media print{.hero,.banner,.nav,.tools,.crumb{display:none}body{background:#fff;color:#000}.page{border:0;padding:0}.video{display:none}}
 
 /* look */
-.herowrap{position:relative;background:#25244F}
+.herowrap{position:relative;background:#151a2b}
 .herowrap::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;background:linear-gradient(to bottom,rgba(37,36,79,0),#25244F)}
 .banner{padding-top:8px;position:relative;z-index:1;margin-top:-1px}
 .mhead .mt{flex:1}
