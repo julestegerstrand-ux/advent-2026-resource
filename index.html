@@ -230,7 +230,7 @@ var WN=["One","Two","Three","Four"];
 function wk(n,name,title,date,c,t,prac,refs){
   var list=prac.map(function(p){return "<li><b>"+p[0]+".</b> "+p[1]+"</li>"}).join("");
   var items=[
-   {id:"w"+n+"-practices",title:"Spiritual Practices: Week "+WN[n-1],html:"<p>Week "+n+" begins "+date+". This week asks you to pray with "+name.toLowerCase()+".</p><ul>"+list+"</ul><p>Each prayer can be prayed step by step on a screen, or heard with Dr. Julene guiding you, in the free Sacred Seasons app.</p><a class=\"btn alt\" href=\""+APP+"\">Open Sacred Seasons</a>"},
+   {id:"w"+n+"-practices",title:"Spiritual Practices: Week "+WN[n-1],html:"<p>Week "+n+" begins "+date+". This week asks you to pray with "+name.toLowerCase()+".</p><ul>"+list+"</ul><p>Each prayer can be prayed step by step on a screen, or heard with Dr. Julene guiding you, in the Sacred Seasons app.</p><a class=\"btn alt\" href=\""+APP+"\">Open Sacred Seasons</a>"},
    {group:"Lectionary Texts"}
   ];
   refs.forEach(function(r,i){items.push({id:"w"+n+"-text"+(i+1),title:r,sub:true,html:"<p>Week "+n+" reading. Scripture is from the NRSV.</p>"+DRAFT})});
