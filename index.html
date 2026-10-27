@@ -308,7 +308,7 @@ function home(){
     });
     h+='</div></div>';
   });
-  h+='<footer>Offered freely by the <a href="https://nednaz.org" target="_blank" rel="noopener">New England District Church of the Nazarene</a>.'+(GC_SITE?' We count page visits to help us know what resources people are using.':'')+'</footer><p class="note fnote">Scripture quotations in the Lectio and Group Practices handouts are from the Berean Standard Bible, which is in the public domain. Other Scripture quotations are from the New Revised Standard Version Updated Edition, copyright &copy; 2021 National Council of Churches of Christ in the United States of America. Used by permission. All rights reserved worldwide.</p><p class="fnote"><a href="#credits">Credits and permissions</a></p>';
+  h+='<footer>Offered freely by the <a href="https://nednaz.org" target="_blank" rel="noopener">New England District Church of the Nazarene</a>.'+(GC_SITE?' We count page visits to help us know what resources people are using.':'')+'</footer><p class="note fnote">Scripture quotations in the Lectio and Group Practices handouts are from the Berean Standard Bible, which is in the public domain. Other Scripture quotations are from the New Revised Standard Version Updated Edition, copyright &copy; 2021 National Council of Churches of Christ in the United States of America. Used by permission. All rights reserved worldwide.</p><p class="fnote"><a href="#credits">Credits and permissions</a> &middot; <a href="#privacy">Privacy</a></p>';
   return h;
 }
 document.addEventListener("click",function(e){
@@ -343,6 +343,24 @@ var CREDITS='<p>This resource was made freely for churches by the New England Di
 '<h3>Music</h3><p>Songs are linked from Spotify and belong to their artists and publishers. Hymn numbers are from the <em>Sing to the Lord</em> hymnal. &ldquo;We Are Waiting&rdquo; is &copy; 2012 Greater Plan Publishing, LLC, words and music by W. Zachary Taylor and Chris Kline; its chord chart is on Worship Current.</p>'+
 '<h3>Videos and outside pages</h3><p>Videos are shown from YouTube and belong to their creators. Links to outside articles, lessons, and songs lead to other websites, which own their content.</p>'+
 '<h3>Questions or corrections</h3><p>To ask about using something here, or to ask us to fix or remove it, write to John Nielson at <a href="mailto:jwnielson@mac.com">jwnielson@mac.com</a>.</p>';
+var PRIVACY='<p>Last updated October 27, 2026.</p>'+
+'<h3>What this site is</h3><p>This is a free Advent resource from the New England District Church of the Nazarene. You do not need an account to read it. The only place we ask for personal details is the optional sign-up form described below.</p>'+
+'<h3>What we count</h3><p>We use GoatCounter, a small visit counter, to learn which pages and files people use. For each visit it records:</p><ul>'+
+'<li>the page you opened, and any file or outside link you clicked</li>'+
+'<li>the website you came from, if any</li>'+
+'<li>your browser, device type, and screen size</li>'+
+'<li>your country, worked out from your internet address</li></ul>'+
+'<p>GoatCounter does not keep your internet address or any name, and it does not use cookies. It does not follow you to other websites. We do not sell or share these counts, and we use them only to see how the resource is used.</p>'+
+'<h3>The optional sign-up form</h3><p>The page with Dr. Julene Tegerstrand&rsquo;s Advent practices has a Google Form for people who want to hear when her Sacred Seasons app is ready. It is optional. If you fill it in, what you type goes to Google Forms and to Everyday Peacemaking, LLC, which uses it only to contact you about the app. Write to julenet@everydaypeacemaking.org to ask to be removed.</p>'+
+'<h3>What stays on your device</h3><p>Your text size, the page you last read, and which sections are open are saved in your own browser so the site feels the same when you return. We never receive that information. You can clear it in your browser settings.</p>'+
+'<h3>Other companies</h3><ul>'+
+'<li><strong>GitHub</strong> hosts this site, and like any web host it keeps ordinary server records, which can include your internet address.</li>'+
+'<li><strong>Google Fonts</strong> supplies the type for the pages, so your browser contacts Google when a page loads.</li>'+
+'<li><strong>YouTube and Spotify</strong> videos and playlists play inside some pages. Those companies may collect information when you press play and follow their own privacy policies. Videos use YouTube&rsquo;s privacy-enhanced mode.</li>'+
+'<li>Links to outside websites lead to places we do not control.</li></ul>'+
+'<h3>Children</h3><p>We do not knowingly collect personal information from anyone, including children.</p>'+
+'<h3>Questions</h3><p>To ask about this page or to have something changed, write to John Nielson at <a href="mailto:jwnielson@mac.com">jwnielson@mac.com</a>.</p>';
+function privacyPage(){return backbar()+'<article class="page"><h2 id="ptitle" tabindex="-1">Privacy</h2>'+PRIVACY+'</article>'}
 function creditsPage(){return backbar()+'<article class="page"><h2 id="ptitle" tabindex="-1">Credits and Permissions</h2>'+CREDITS+'</article>'}
 function getRole(){var id=null;try{id=sessionStorage.getItem("advent26-role")}catch(e){}var r=null;ROLES.forEach(function(x){if(x.id===id)r=x});return r}
 function setRole(id){try{if(id)sessionStorage.setItem("advent26-role",id);else sessionStorage.removeItem("advent26-role")}catch(e){}}
@@ -446,12 +464,13 @@ function route(){
   var id=location.hash.slice(1),app=document.getElementById("app"),i=-1,role=null;
   FLAT.forEach(function(it,k){if(it.id===id)i=k});
   ROLES.forEach(function(r){if(r.id===id)role=r});
-  if(role)setRole(role.id);else if(i<0&&id!=="credits")setRole(null);
+  if(role)setRole(role.id);else if(i<0&&id!=="credits"&&id!=="privacy")setRole(null);
   if(id==="credits"){app.innerHTML=creditsPage();setTitle("Credits and permissions")}
+  else if(id==="privacy"){app.innerHTML=privacyPage();setTitle("Privacy")}
   else if(role){app.innerHTML=rolePage(role);setTitle("For "+role.label.toLowerCase())}
   else if(i>=0){app.innerHTML=page(i);setTitle(plain(FLAT[i].title));rememberPage(FLAT[i].id)}
   else{app.innerHTML=home();setTitle("")}
-  document.body.classList.toggle("sub",!!(role||i>=0||id==="credits"));
+  document.body.classList.toggle("sub",!!(role||i>=0||id==="credits"||id==="privacy"));
   enhance(app);
   window.scrollTo(0,0);
   var t=document.getElementById("ptitle");if(t)t.focus();
