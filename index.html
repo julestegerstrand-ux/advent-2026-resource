@@ -27,6 +27,10 @@ main{max-width:820px;margin:0 auto;padding:24px 16px 64px}
 .ico{flex:none;width:18px;height:22px;background:var(--c);border:2px solid var(--c);border-radius:3px}
 .grp{padding:14px 20px;font-weight:700;color:var(--muted);border-top:1px solid var(--line);border-left:5px solid var(--c)}
 .crumb{margin:0 0 8px;font-size:16px}
+.signupbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--scarlet);border-radius:8px;padding:14px 18px;margin:0 0 20px}
+.signupbar p{margin:0;flex:1 1 280px}
+.signupbar .btn{margin:0}
+.signupbar .nb{min-height:44px}
 .page{background:var(--card);border:1px solid var(--line);border-top:8px solid var(--c);border-radius:8px;padding:24px 26px;--c:var(--accent)}
 .page h2{font:500 clamp(26px,4vw,34px)/1.2 "Fraunces",Georgia,serif;margin:0 0 14px}
 .page h2:focus{outline:none}
@@ -294,8 +298,13 @@ function style(m){return m.c?' style="--c:'+m.c+';--t:'+m.t+';--cd:'+m.cd+'"':''
 var OPEN=MODS.map(function(){return true});
 try{var sv=JSON.parse(sessionStorage.getItem("mods")||"null");if(sv&&sv.length===OPEN.length)OPEN=sv}catch(e){}
 function saveOpen(){try{sessionStorage.setItem("mods",JSON.stringify(OPEN))}catch(e){}}
+function signupBarHTML(){
+  var gone=false;try{gone=localStorage.getItem("advent26-signupbar")==="1"}catch(e){}
+  if(gone||typeof SIGNUP_URL==="undefined"||!SIGNUP_URL)return "";
+  return '<section class="signupbar" aria-label="Sign up for updates"><p><strong>More resources are coming.</strong> Sign up and we will let you know when they are ready.</p><a class="btn" href="#signup">Sign up for updates</a><button type="button" class="nb" id="signupclose">No thanks</button></section>';
+}
 function home(){
-  var h=resumeHTML()+rolesHTML()+searchHTML();
+  var h=signupBarHTML()+resumeHTML()+rolesHTML()+searchHTML();
   h+='<div class="tiles">';
   MODS.forEach(function(m,k){if(m.wk)h+='<button type="button" class="tile wk"'+style(m)+' data-goto="'+k+'"><img src="assets/wreath-week-'+m.n+'.svg" alt=""><span class="tw">Week '+m.n+'</span><span class="tn">'+m.name+'</span><span class="td">'+m.date+'</span></button>';else if(m.feat)h+='<button type="button" class="tile wk"'+style(m)+' data-goto="'+k+'"><img src="'+m.img+'" alt=""><span class="tw">'+m.tw+'</span><span class="tn">'+m.tn+'</span><span class="td">'+m.td+'</span></button>'});
   h+='</div>'+'<div class="tools"><button type="button" class="nb" data-all="1">Expand all</button><button type="button" class="nb" data-all="0">Collapse all</button></div>';
@@ -357,7 +366,7 @@ var PRIVACY='<p>Last updated October 27, 2026.</p>'+
 '<p>GoatCounter stores this data on servers in Finland and Germany. The service is run by Martin Tournoij in Ireland. Read <a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener">GoatCounter&rsquo;s privacy policy</a>.</p>'+
 '<h3>The optional sign-up form</h3><p>The page called Sign Up for Updates and Credit has a Google Form. It is optional, and every page works without it. If you fill it in, you tell us your name, email, church, and role. Your answers go to Google Forms and are kept in one private spreadsheet that only the New England District team can see. We use them to send you credit information and to email you about this resource and future Advent and Lent resources. We do not sell or share them. To be removed, write to julenet@everydaypeacemaking.org.</p>'+
 '<p>Separately, one page of Dr. Julene Tegerstrand&rsquo;s Advent practices links to a sign-up for her Sacred Seasons app, which is run by Everyday Peacemaking, LLC.</p>'+
-'<h3>What stays on your device</h3><p>Your text size, the page you last read, and which sections are open are saved in your own browser so the site feels the same when you return. We never receive that information. You can clear it in your browser settings.</p>'+
+'<h3>What stays on your device</h3><p>Your text size, the page you last read, which sections are open, and whether you closed the sign-up banner are saved in your own browser so the site feels the same when you return. We never receive that information. You can clear it in your browser settings.</p>'+
 '<h3>Other companies</h3><ul>'+
 '<li><strong>GitHub</strong> hosts this site, and like any web host it keeps ordinary server records, which can include your internet address.</li>'+
 '<li><strong>Google Fonts</strong> supplies the type for the pages, so your browser contacts Google when a page loads.</li>'+
@@ -490,6 +499,7 @@ function route(){
     if(b.id==="fsp"){cur=Math.min(3,cur+1);size(cur)}
     else if(b.id==="fsm"){cur=Math.max(0,cur-1);size(cur)}
     else if(b.id==="prt"){window.print()}
+    else if(b.id==="signupclose"){try{localStorage.setItem("advent26-signupbar","1")}catch(x){}var bar=b.closest(".signupbar");if(bar)bar.remove();var h1=document.getElementById("app");if(h1)h1.focus()}
     else if(b.id==="skip"){e.preventDefault();var m=document.getElementById("app");m.focus();m.scrollIntoView()}
     else if(b.id==="copylink"){
       var st=document.getElementById("copystatus");
