@@ -4,7 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#25244F">
-<title>Advent 2026 Course</title>
+<title>Advent 2026 Resource</title>
+<meta name="description" content="Free resources for pastors and church members leading a congregation or group through Advent, from the Discipleship Committee of the New England District Church of the Nazarene.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Advent 2026 Resource">
+<meta property="og:title" content="Advent 2026 Resource">
+<meta property="og:description" content="Free resources for pastors and church members leading a congregation or group through Advent, from the Discipleship Committee of the New England District Church of the Nazarene.">
+<meta property="og:url" content="https://adventyearb.neddiscipleship.com/">
+<meta property="og:image" content="https://adventyearb.neddiscipleship.com/assets/banner.jpg">
+<meta property="og:image:alt" content="Prepare the Way: a path leading to a stable under the night sky">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap">
 <style>
 :root{--surface:#FBF4EA;--ink:#2E1F2B;--muted:#6B5563;--line:#E2D2BE;--head:#F3E6D3;--card:#fff;--green:#0B874B;--accent:#3B3A78;--teal:#1E7470;--scarlet:#B3321F;--night:#25244F;--on:#FFF8EE;--c:#3B3A78;--t:#FFF8EE}
@@ -393,7 +402,7 @@ document.addEventListener("click",function(e){
   if(f!==null){var nb=document.querySelector('[data-mod="'+f+'"]');if(nb)nb.focus()}
 });
 function plain(s){return String(s).replace(/<[^>]*>/g," ").replace(/&[a-z]+;/g," ").replace(/\s+/g," ").trim()}
-function setTitle(x){document.title=x?x+" | Advent 2026":"Advent 2026 Course"}
+function setTitle(x){document.title=x?x+" | Advent 2026":"Advent 2026 Resource"}
 var SHOW_DRAFTS=true; /* at launch, change true to false to hide every "to be added" note */
 var ROLES=[
  {id:"for-pastor",label:"Pastor or preacher",note:"Commentary, reflections, and sermon outlines",test:function(it){return /^w\d-(text\d|reflections|sermon)$/.test(it.id)||it.id==="sermon"}},
@@ -473,7 +482,7 @@ function buildIndex(){
   })});
 }
 function searchHTML(){
-  return '<div class="search"><label for="q">Search this course</label><input id="q" type="search" placeholder="Try a song, a Bible passage, or a name" autocomplete="off"><div id="results" aria-live="polite"></div></div>';
+  return '<div class="search"><label for="q">Search this resource</label><input id="q" type="search" placeholder="Try a song, a Bible passage, or a name" autocomplete="off"><div id="results" aria-live="polite"></div></div>';
 }
 function runSearch(q){
   var out=document.getElementById("results");if(!out)return;
