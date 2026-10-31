@@ -227,6 +227,15 @@ body.sub main{padding-top:16px}
 .steps{padding-left:22px}.steps li{margin:8px 0}
 .phero .pg{margin-top:8px;font-size:16px}
 </style>
+<style>
+a.tile{text-decoration:none}
+.tile.wide{grid-column:1/-1;flex-direction:row;text-align:left;align-items:center;gap:18px;padding:14px 22px}
+.tile.wide img{width:84px;max-width:84px;flex:none;aspect-ratio:1;margin:0;padding:6px}
+.tile.wide .tx{display:flex;flex-direction:column}
+.tile.wide .tn{min-height:0;justify-content:flex-start;margin:0}
+.tile.wide .td{margin-top:2px}
+a.tile:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+</style>
 </head>
 <body>
 <div role="banner">
@@ -390,6 +399,7 @@ function home(){
   MODS.forEach(function(m,k){if(m.wk)h+=tileHTML(m,k)});
   h+='</div><h2 class="hh">Christmas and more</h2><div class="tiles">';
   MODS.forEach(function(m,k){if(m.feat)h+=tileHTML(m,k)});
+  h+='<a class="tile wk wide" href="#app" style="--c:#E3A82B;--t:#2E1F2B;--cd:#E3A82B"><img src="assets/sacred-seasons-mark.svg" alt=""><span class="tx"><span class="tn">Sacred Seasons</span><span class="td">Daily guided prayer to use with your church or group</span></span></a>';
   h+='</div>';
   h+='<section class="start"><h2 class="hh">Start here</h2><div class="startrow"><a class="nb go" href="#how">How to use this resource</a><a class="nb" href="#intro">Introduction to Advent</a><a class="nb" href="#authors">Meet the authors</a></div></section>';
   h+=rolesHTML()+searchHTML();
