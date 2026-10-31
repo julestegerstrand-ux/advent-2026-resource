@@ -218,6 +218,15 @@ body.sub main{padding-top:16px}
 .gcard h3{margin:12px 0 8px;font:500 24px/1.2 "Fraunces",Georgia,serif}
 .gcard p{margin:0 0 12px}
 </style>
+<style>
+.ways{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 14px}
+@media (max-width:620px){.ways{grid-template-columns:1fr}}
+.way{background:var(--head);border:1px solid var(--line);border-radius:12px;padding:6px 16px 10px}
+.way h4{margin:8px 0 4px;font:700 17px/1.3 "DM Sans",system-ui,sans-serif}
+.way p{margin:0}
+.steps{padding-left:22px}.steps li{margin:8px 0}
+.phero .pg{margin-top:8px;font-size:16px}
+</style>
 </head>
 <body>
 <div role="banner">
@@ -267,7 +276,7 @@ var MODS=[
   {id:"music",title:"General Music Resources",html:P.music},
   {id:"vineyard",title:"Advent Resources from Vineyard Worship",href:"https://www.vineyardworship.com/advent2022"},
   {id:"children",title:"Prepare the Way Children's Scope and Sequence",html:P.children},
-  {id:"app",title:"Sacred Seasons: Pray with Your Church This Advent",html:"<p>Sacred Seasons is a web app from Everyday Peacemaking. The Advent season is free. Each day has one short prayer with Scripture and silence, from November 29 to Christmas Eve. You can pray step by step or listen as Dr. Julene guides you. You can save it to your phone home screen, and it will act like an app. The iOS and Android versions are coming. There are no ads and no account.</p><a class=\"btn\" href=\""+APP+"\">Open Sacred Seasons</a>"}
+  {id:"app",title:"Introduction to Sacred Seasons",html:"<p>Sacred Seasons is a web app from Everyday Peacemaking. The Advent season is free. Each day has one short prayer with Scripture and silence, from November 29 to Christmas Eve. You can pray step by step or listen as Dr. Julene guides you. You can save it to your phone home screen, and it will act like an app. The iOS and Android versions are coming. There are no ads and no account.</p><a class=\"btn\" href=\""+APP+"\">Open Sacred Seasons</a>"}
  ]},
  wk(1,"Hope","First Week of Advent (Hope)","November 29","#25244F","#FFF8EE",[["Keeping the Four Watches","Mark 13 asks us to keep watch. Four short prayers, one for each watch of the night."],["Restore Us: A Breath Prayer","A short breath prayer from Psalm 80, prayed for about five minutes."],["Gifts While Waiting","Notice what you have been given while you wait."]],["Isaiah 64:1-9","Psalm 80:1-7, 17-19","1 Corinthians 1:3-9","Mark 13:24-37"]),
  wk(2,"Peace","Second Week of Advent (Peace)","December 6","#25244F","#FFF8EE",[["&ldquo;Speak to My Heart&rdquo;: A Letter","Write a letter from God's comfort in Isaiah 40."],["At the Jordan","Stand at the river with John and hear the call to prepare."],["The Kiss of Peace","Pass the peace in words, in person or in prayer."]],["Isaiah 40:1-11","Psalm 85:1-2, 8-13","2 Peter 3:8-15a","Mark 1:1-8"]),
@@ -304,9 +313,7 @@ MODS.push({title:"Additional Resources for Christmas",feat:true,tw:"More for",tn
 ]});
 MODS[2].items.unshift({id:"w1-playlist",title:"Advent Hope Spotify Playlist",html:'<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0rXjXIhOZBhqKRjtkBngOd?utm_source=generator&si=d1b5e995f30445c7" width="100%" height="352" frameBorder="0" title="Advent Hope Spotify playlist" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe><p><a href="https://open.spotify.com/playlist/0rXjXIhOZBhqKRjtkBngOd" target="_blank" rel="noopener">Open the playlist in Spotify</a></p>'});
 MODS.forEach(function(m){m.items.forEach(function(it){if(it.id==="w1-practices")it.html=
-'<p>This week’s handout gives you two ways to pray during Advent: Lectio Divina and short practices. You can pray each one on your own or with a small group, and you don’t need any experience to lead them. The steps are printed on each page.</p>'+
-'<p><strong>Lectio Divina</strong> means sacred reading. It is an old way of praying with Scripture. You read a short passage aloud four times, slowly, and pause after each reading. Each time, you listen for something different: a word that catches you, what it touches in your life, what you want to say to God, and then rest. In a group, a different person can read each time.</p>'+
-'<p><strong>The practices</strong> are simple ways to pray with your body, your breath, and your attention. Each one takes 5 to 20 minutes and ends with questions to pray with or share.</p>'+
+'<p>Each week has Lectio Divina on four passages and two short practices. Pray them on your own or with a group. You do not need experience to lead them.</p>'+
 '<p><a href="New%20England%20Advent%202026/Week%201_Hope/Advent%20Week%201%20Hope%20-%20Lectio%20and%20Group%20Practices.pdf" target="_blank" rel="noopener">Practices for the first week of Advent (PDF to print)</a></p>'+
 '<p>This week we wait with people who feel that God has hidden from them, and yet we keep listening. Often, when we listen together, we can help each other notice even small ways God is present.</p>'+
 '<h3>Lectio Divina</h3><p>Isaiah 64:7-9<br>Psalm 80:17-19<br>1 Corinthians 1:7-9<br>Mark 13:34-37</p>'+
@@ -563,6 +570,8 @@ function decoratePractice(app,id,it){
     var h2=art.querySelector("h2");
     var hero=document.createElement("div");hero.className="phero";
     hero.innerHTML='<img src="assets/wreath-week-'+m[1]+'.svg" alt=""><div><p class="pk">Week '+m[1]+' &middot; '+wk.date+'</p><p class="pn">'+wk.name+'</p><p class="ps">Lectio Divina and short practices to pray alone or with a group</p></div>';
+    var GOSPEL={1:"Mark 13:34-37",2:"Mark 1:5-8",3:"John 1:6-8",4:"Luke 1:35-38"};
+    hero.lastChild.insertAdjacentHTML("beforeend",'<p class="pg">Group Lectio this week: <strong>'+GOSPEL[m[1]]+'</strong></p>');
     h2.insertAdjacentElement("afterend",hero);
     art.querySelectorAll("p > a[href$='.pdf']").forEach(function(a){var p=a.parentNode;if(p.children.length===1&&p.textContent.trim()===a.textContent.trim())a.classList.add("btn")});
     var first=null,cards=[];
@@ -572,7 +581,7 @@ function decoratePractice(app,id,it){
     if(cards.length){var g=document.createElement("div");g.className="pgrid";cards[0].parentNode.insertBefore(g,cards[0]);cards.forEach(function(c){g.appendChild(c)})}
     var gp=art.querySelector(".pgrid");
     if(gp){var gc=document.createElement("div");gc.className="gcard";
-      gc.innerHTML='<h3>Pray this week with your group</h3><p>The prayers for Week '+m[1]+' are in the Sacred Seasons web app. Everyone can pray on their own during the week, then your group can meet to share what came up. Leader guides for the weekly meeting are in the free Church Kit.</p><a class="btn" href="https://sacredseasons.julenetegerstrand.com/pray/" target="_blank" rel="noopener">Pray Week '+m[1]+' in Sacred Seasons</a><a class="btn alt" href="https://sacredseasons.julenetegerstrand.com/advent-resources-for-churches/" target="_blank" rel="noopener">Get the free Church Kit</a>';
+      gc.innerHTML='<h3>Pray this week with your group</h3><p>Each person prays with the app during the week. Then your group gathers once a week, on Zoom or in person. Choose one way, or alternate.</p><div class="ways"><div class="way"><h4>Way 1: Listen to each other</h4><p>Weekly gathering guide. 60 or 90 minutes.</p></div><div class="way"><h4>Way 2: Pray Lectio together</h4><p>Lectio guide for Week '+m[1]+', '+GOSPEL[m[1]]+'. About 25 minutes.</p></div></div><a class="btn" href="https://sacredseasons.julenetegerstrand.com/pray/" target="_blank" rel="noopener">Pray Week '+m[1]+' in Sacred Seasons</a><a class="btn alt" href="https://sacredseasons.julenetegerstrand.com/advent-resources-for-churches/" target="_blank" rel="noopener">Get the free Church Kit</a>';
       gp.insertAdjacentElement("afterend",gc)}
     art.querySelectorAll("p").forEach(function(p){if(/part of the Sacred Seasons web app/.test(p.textContent)){var c=document.createElement("div");c.className="appcard";c.innerHTML='<img src="assets/sacred-seasons-logo.png" alt="Sacred Seasons logo">';var d=document.createElement("div");p.parentNode.replaceChild(c,p);d.appendChild(p);c.appendChild(d)}});
   }
