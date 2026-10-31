@@ -343,6 +343,7 @@ MODS[5].items.forEach(function(it,i,a){if(it.id==="w4-group")a.splice(i,0,{id:"w
 MODS[5].items.forEach(function(it,i,a){if(it.id==="w4-group")a.splice(i,0,{id:"w4-worship",title:"Resources for Corporate Worship: Week Four",html:""})});
 MODS[5].items.forEach(function(it,i,a){if(it.id==="w4-group")a.splice(i,0,{id:"w4-sermon",title:"Prepare the Way Sermon Week 4.pdf",href:"New%20England%20Advent%202026/Week%204_Love/Prepare%20the%20Way%20Sermon%20Week%204.pdf"})});
 MODS.forEach(function(m){m.items.forEach(function(it){if(it.id&&P["c_"+it.id])it.html=P["c_"+it.id]})});
+(function(){var g=MODS[1].items,i=-1;g.forEach(function(x,k){if(x.id==="app")i=k});if(i>0){var x=g.splice(i,1)[0];g.unshift(x)}})();
 /* Sign-up form. Paste the Google Form link between the quotes. Leave it empty to hide the sign-up page. */
 var SIGNUP_URL="https://docs.google.com/forms/d/e/1FAIpQLSegH4sFqqGCvNoVfZD9_l5L5J1HurbQJ7S8YJPVcosXFlkUGQ/viewform";
 if(SIGNUP_URL){
